@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ConsoleLogger } from '@nestjs/common';
+import { ConsoleLogger, RequestMethod } from '@nestjs/common';
 import { logger } from '@mikro-orm/nestjs';
 
 async function bootstrap() {
@@ -19,7 +19,12 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.enableShutdownHooks();
+  app.setGlobalPrefix('api', {
+    exclude: [
+      { path: '', method: RequestMethod.GET },
+      { path: 'health', method: RequestMethod.GET },
+    ],
+  });
 
   const config = app.get(ConfigService);
   const port = config.getOrThrow<string>('APP_PORT');
