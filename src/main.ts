@@ -26,6 +26,8 @@ async function bootstrap() {
     ],
   });
 
+  app.enableShutdownHooks();
+
   const config = app.get(ConfigService);
   const port = config.getOrThrow<string>('APP_PORT');
 
