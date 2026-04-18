@@ -1,32 +1,33 @@
 import { defineConfig } from '@mikro-orm/postgresql';
-import { Migrator } from '@mikro-orm/migrations';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
+import { Migrator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
-import * as dotenv from 'dotenv';
-import { join } from 'path';
-
-dotenv.config();
+import 'dotenv/config';
 
 export default defineConfig({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
-  dbName: process.env.DB_NAME,
-  user: process.env.DB_USER,
+  dbName: process.env.DB_DATABASE,
+  user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
+
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
+
   metadataProvider: TsMorphMetadataProvider,
-  migrations: {
-    path: join(process.cwd(), 'database/migrations'),
-    pathTs: join(process.cwd(), 'database/migrations'),
-    glob: '!(*.d).{js,ts}',
-    transactional: true,
-    snapshot: true,
-  },
-  seeder: {
-    path: join(process.cwd(), 'database/seeders'),
-    pathTs: join(process.cwd(), 'database/seeders'),
-  },
   extensions: [Migrator, SeedManager],
-  debug: process.env.APP_ENV !== 'production',
+
+  migrations: {
+    path: 'dist/database/migrations',
+    pathTs: 'database/migrations',
+    transactional: true,
+    glob: '!(*.d).{js,ts}',
+  },
+
+  seeder: {
+    path: 'dist/database/seeders',
+    pathTs: 'database/seeders',
+  },
+
+  debug: process.env.APP_ENV === 'development',
 });
