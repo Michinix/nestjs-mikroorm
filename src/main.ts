@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ConsoleLogger, RequestMethod } from '@nestjs/common';
-import { logger } from '@mikro-orm/nestjs';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -30,8 +30,7 @@ async function bootstrap() {
   const port = config.getOrThrow<string>('APP_PORT');
 
   await app.listen(port, '0.0.0.0');
-
-  logger.log(`Application is running on: ${await app.getUrl()}`);
+  Logger.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
