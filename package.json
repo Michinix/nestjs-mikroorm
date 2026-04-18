@@ -18,12 +18,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:create": "mikro-orm migration:create",
-    "migration:up": "mikro-orm migration:up",
-    "migration:down": "mikro-orm migration:down",
-    "migration:list": "mikro-orm migration:list",
-    "migration:fresh": "mikro-orm migration:fresh --seed",
-    "seed": "mikro-orm seeder:run"
+    "db:create": "mikro-orm migration:create",
+    "db:create:blank": "mikro-orm migration:create --blank",
+    "db:create:init": "mikro-orm migration:create --initial",
+    "db:migrate": "mikro-orm migration:up",
+    "db:rollback": "mikro-orm migration:down",
+    "db:list": "mikro-orm migration:list",
+    "db:fresh": "mikro-orm migration:fresh --seed",
+    "db:seed": "mikro-orm seeder:run"
   },
   "mikro-orm": {
     "preferTs": true,
