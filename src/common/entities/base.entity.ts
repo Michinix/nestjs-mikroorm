@@ -1,13 +1,10 @@
-import { PrimaryKey, Property } from '@mikro-orm/decorators/legacy';
+import { Property } from '@mikro-orm/decorators/legacy';
 import { Opt } from '@mikro-orm/postgresql';
 
 export abstract class BaseEntity {
-  @PrimaryKey()
-  id!: number;
-
-  @Property()
+  @Property({ defaultRaw: 'now()' })
   createdAt: Date & Opt = new Date();
 
-  @Property({ onUpdate: () => new Date() })
+  @Property({ defaultRaw: 'now()', onUpdate: () => new Date() })
   updatedAt: Date & Opt = new Date();
 }
