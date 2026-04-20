@@ -32,6 +32,8 @@ async function bootstrap() {
 
   app.enableShutdownHooks();
 
+  app.useGlobalInterceptors();
+
   await orm.schema.ensureDatabase();
   await orm.schema.update();
 
