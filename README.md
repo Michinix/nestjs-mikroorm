@@ -57,6 +57,36 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## MikroORM Commands
+
+This project uses [MikroORM](https://mikro-orm.io/) for database management and migrations. The following commands are available in the `package.json`:
+
+```bash
+# Create a new migration (based on detected schema changes)
+$ npm run db:create
+
+# Create a blank migration (to be filled manually)
+$ npm run db:create:blank
+
+# Create the initial migration (for the first database structure)
+$ npm run db:create:init
+
+# Apply all pending migrations
+$ npm run db:migrate
+
+# Rollback the last applied migration
+$ npm run db:rollback
+
+# List all migrations
+$ npm run db:list
+
+# Reset the database and run seeders
+$ npm run db:fresh
+
+# Run the seeders
+$ npm run db:seed
+```
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
