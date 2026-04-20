@@ -27,13 +27,6 @@
     "db:fresh": "mikro-orm migration:fresh --seed",
     "db:seed": "mikro-orm seeder:run"
   },
-  "mikro-orm": {
-    "preferTs": true,
-    "configPaths": [
-      "./src/mikro-orm.config.ts",
-      "./dist/mikro-orm.config.js"
-    ]
-  },
   "dependencies": {
     "@mikro-orm/core": "^7.0.11",
     "@mikro-orm/decorators": "^7.0.11",
@@ -75,6 +68,12 @@
     "tsx": "^4.21.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
+  },
+  "mikro-orm": {
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
   },
   "jest": {
     "moduleFileExtensions": [
