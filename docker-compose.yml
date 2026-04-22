@@ -27,6 +27,11 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
       MINIO_KMS_SECRET_KEY: minio-key:${MINIO_KMS_SECRET_KEY}
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
     volumes:
       - minio_data:/data
       - ./.docker/minio/minio.license:/minio.license
