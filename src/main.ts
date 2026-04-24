@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ConsoleLogger, RequestMethod } from '@nestjs/common';
+import { ConsoleLogger, RequestMethod, ValidationPipe } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
 import { MikroORM } from '@mikro-orm/core';
 
@@ -32,7 +32,13 @@ async function bootstrap() {
 
   app.enableShutdownHooks();
 
-  app.useGlobalInterceptors();
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   await orm.schema.ensureDatabase();
   await orm.schema.update();
