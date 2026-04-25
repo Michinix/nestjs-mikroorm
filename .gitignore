@@ -15,8 +15,8 @@ lerna-debug.log*
 # OS
 .DS_Store
 
-# Database/
-database/migrations/.snapshot-*.json
+# Docker
+.docker/minio/minio.license
 
 # Tests
 /coverage
@@ -58,6 +58,3 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# Docker config
-.docker/minio/minio.license
