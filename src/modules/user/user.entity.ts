@@ -4,10 +4,13 @@ import { UserRepository } from './user.repository';
 
 @Entity({ repository: () => UserRepository })
 export class UserEntity {
-  [EntityRepositoryType]?: UserRepository;
+  [EntityRepositoryType]: UserRepository;
 
   @PrimaryKey()
   id!: string;
+
+  @Property({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
+  uuid!: string;
 
   @Property()
   firstName!: string;
@@ -20,6 +23,9 @@ export class UserEntity {
 
   @Property({ hidden: true })
   password!: string;
+
+  @Property()
+  avatarHash!: string;
 
   @Property({ defaultRaw: 'now()' })
   createdAt: Date & Opt = new Date();
