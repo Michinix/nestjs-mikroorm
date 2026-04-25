@@ -4,7 +4,7 @@ import { UserRepository } from './user.repository';
 
 @Entity({ repository: () => UserRepository })
 export class UserEntity {
-  [EntityRepositoryType]: UserRepository;
+  [EntityRepositoryType]?: UserRepository;
 
   @PrimaryKey()
   id!: string;
